@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  chatname: MyString
+  admin_id: 1
+
+two:
+  chatname: MyString
+  admin_id: 1
