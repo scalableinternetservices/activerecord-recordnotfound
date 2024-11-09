@@ -29,6 +29,7 @@ tmp/cache/bootsnap/compile-cache/
 # Ignore dotenv files (only if using environment variables this way)
 .env
 .env.*.local
+*.key
 
 # Ignore Spring server files
 /spring/*.pid
