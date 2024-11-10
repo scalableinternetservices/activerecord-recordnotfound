@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show]
   def new
     @user = User.new
   end
@@ -13,6 +14,11 @@ class UsersController < ApplicationController
       flash.now[:alert] = "There was an error creating your account."
       render :new
     end
+  end
+
+  def show
+    @user = params[:id] ? User.find(params[:id]) : current_user
+    @posts = @user.posts
   end
 
   private

@@ -1,0 +1,59 @@
+/* General styling for profile page */
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.profile-section h3 {
+  font-size: 20px;
+  color: #666;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.post-title {
+  font-size: 18px;
+  color: #333;
+}
+
+.view-post-link {
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.view-post-link:hover {
+  text-decoration: underline;
+}
+
+.no-posts {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+}
