@@ -13,3 +13,5 @@
  *= require_tree .
  *= require_self
  */
+*= require_auth
+*= require_error
