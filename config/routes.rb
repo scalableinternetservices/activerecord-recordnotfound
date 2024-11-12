@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   get "/logout", to: "sessions#destroy"
 
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:index, :show, :new, :create]
 
   resources :friendships, only: [:create] do
     member do
