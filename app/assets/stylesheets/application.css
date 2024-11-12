@@ -15,3 +15,6 @@
  */
 *= require_auth
 *= require_error
+*= require_navbar
+*= require_profile
+*= require_home
