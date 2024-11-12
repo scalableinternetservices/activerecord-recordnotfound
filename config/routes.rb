@@ -7,6 +7,14 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :new, :create]
 
+  resources :friendships, only: [:create] do
+    member do
+      patch :accept
+      patch :reject
+      delete :destroy
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

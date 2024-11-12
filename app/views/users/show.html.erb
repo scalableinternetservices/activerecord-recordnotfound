@@ -1,6 +1,43 @@
 <div class="profile-container">
   <h2><%= @user.user_name %>'s Profile</h2>
 
+  <% if current_user == @user %>
+    <section class="friends-section">
+      <h3>Friends</h3>
+      <% if @user.friends.any? %>
+        <ul class="friends-list">
+          <% @user.friends.each do |friend| %>
+            <li class="friend-item">
+              <%= link_to friend.user_name, user_path(friend), class: "friend-link" %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No friends yet.</p>
+      <% end %>
+    </section>
+  <% elsif current_user.friend_ids.include?(@user.id) %>
+    <div class="friend-actions">
+      <%= button_to 'Remove Friend', friendship_path(@user), 
+            method: :delete, 
+            class: 'unfriend-button',
+            data: { confirm: "Are you sure you want to remove #{@user.user_name} from your friends?" } %>
+    </div>
+  <% elsif !current_user.friend_ids.include?(@user.id) %>
+    <div class="friend-request-section">
+      <% if current_user.sent_friend_request_ids.include?(@user.id) %>
+        <p>Friend request sent</p>
+      <% elsif current_user.pending_friend_request_ids.include?(@user.id) %>
+        <div class="request-actions">
+          <%= button_to 'Accept', accept_friendship_path(@user.id), method: :patch, class: 'accept-button' %>
+          <%= button_to 'Reject', reject_friendship_path(@user.id), method: :patch, class: 'reject-button' %>
+        </div>
+      <% else %>
+        <%= button_to 'Add Friend', friendships_path(recipient_id: @user.id), method: :post, class: 'friend-request-button' %>
+      <% end %>
+    </div>
+  <% end %>
+
   <section class="profile-section">
     <h3>Posts</h3>
     <% if @posts.any? %>
