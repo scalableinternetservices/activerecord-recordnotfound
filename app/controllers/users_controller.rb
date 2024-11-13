@@ -21,6 +21,14 @@ class UsersController < ApplicationController
     @posts = @user.posts
   end
 
+  def index
+    if params[:search]
+      @users = User.where("user_name ILIKE ?", "%#{params[:search]}%")
+    else
+      @users = User.all
+    end
+  end
+
   private
 
   def user_params
