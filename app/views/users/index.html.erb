@@ -15,10 +15,10 @@
     <% if @users.any? %>
       <% @users.each do |user| %>
         <div class="user-card">
-          <div class="user-info">
-            <%= link_to user.user_name, user_path(user), class: "user-link" %>
-          </div>
-          <% if current_user != user %>
+          <%= link_to user_path(user), class: "user-link-wrapper" do %>
+            <div class="user-info">
+              <%= user.user_name %>
+            </div>
           <% end %>
         </div>
       <% end %>

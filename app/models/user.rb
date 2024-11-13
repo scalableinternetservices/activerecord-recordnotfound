@@ -91,7 +91,6 @@ class User < ApplicationRecord
     friend = User.find(friend_id)
     
     User.transaction do
-      # Remove from each other's friend lists
       self.friend_ids = Array.wrap(friend_ids) - [friend_id]
       friend.friend_ids = Array.wrap(friend.friend_ids) - [id]
       

@@ -46,10 +46,13 @@
       <% if current_user.sent_friend_request_ids.include?(@user.id) %>
         <p>Friend request sent</p>
       <% elsif current_user.pending_friend_request_ids.include?(@user.id) %>
-        <div class="request-actions">
-          <%= button_to 'Accept', accept_friendship_path(@user.id), method: :patch, class: 'accept-button' %>
-          <%= button_to 'Reject', reject_friendship_path(@user.id), method: :patch, class: 'reject-button' %>
-        </div>
+        <li class="friend-request-item">
+          <%= @user.user_name %> wants to be friends
+          <div class="request-actions">
+            <%= button_to 'Accept', accept_friendship_path(@user.id), method: :patch, class: 'accept-button' %>
+            <%= button_to 'Reject', reject_friendship_path(@user.id), method: :patch, class: 'reject-button' %>
+          </div>
+        </li>
       <% else %>
         <%= button_to 'Add Friend', friendships_path(recipient_id: @user.id), method: :post, class: 'friend-request-button' %>
       <% end %>
