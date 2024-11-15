@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
-    post 'join_group', on: :member  # Use member route for join_group
+    post 'join_group', on: :member
     post 'leave_group', on: :member
   end
 

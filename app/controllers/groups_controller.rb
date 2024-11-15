@@ -60,9 +60,8 @@ class GroupsController < ApplicationController
 
   def join_group
 
-    @group = Group.find(params[:id])  # Ensure this line can find the group
+    @group = Group.find(params[:id])
 
-    # Logic for joining the group, typically:
     if current_user.join_group(@group.id)
       redirect_to @group, notice: "You have successfully joined the group!"
     else
@@ -72,9 +71,8 @@ class GroupsController < ApplicationController
 
   def leave_group
 
-    @group = Group.find(params[:id])  # Ensure this line can find the group
+    @group = Group.find(params[:id])
 
-    # Logic for joining the group, typically:
     if current_user.leave_group(@group.id)
       redirect_to @group, notice: "You have successfully left the group!"
     else
