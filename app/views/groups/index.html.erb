@@ -1,5 +1,5 @@
 
-<div class=people-container>
+<div class=group-container>
     <h2>Search for Groups</h2>
     <div class="search-section">
         <%= form_with url: groups_path, method: :get, local: true, class: "search-form" do |f| %>
@@ -12,7 +12,7 @@
     </div> 
 </div>
 
-<div class="people-container">
+<div class="group-container">
   <h2>Your Groups</h2>
 
   <div class="users-list">
@@ -37,13 +37,13 @@
     <% else %>
       <p class="no-results">No groups found.</p>
     <% end %>
-    
-    <%= link_to 'Create New Group', new_group_path, class: 'search-button' %>
-
   </div>
+  <div class="new-group-button-wrapper">
+    <%= link_to 'Create New Group', new_group_path, class: 'new-group-button' %>
+</div>
 </div> 
 
-<div class="people-container">
+<div class="group-container">
   <h2>Explore Groups</h2>
 
   <div class="users-list">

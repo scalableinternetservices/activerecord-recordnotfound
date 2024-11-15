@@ -1,38 +1,36 @@
-<div class="profile-container">
+<div class="group-container">
     <h2><%= @group.group_name %></h2>
 
-    <h4> <%= @group.count_users_in_group(@group.id)%> Members <h4>
-    <h4> Admin: <%= @group.admin.user_name%> <h4>
+    <div class="group-details">
+        <p><strong><%= @group.count_users_in_group(@group.id) %> Members</strong></p>
+        <p><strong>Admin:</strong> <%= @group.admin.user_name %></p>
+    </div>
 
-    <% if current_user.in_group?(@group.id) %>
-        <% if @group.admin_id == current_user.id %>
-            <div class="request-actions">
-            <%= button_to 'Delete Group', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'reject-button' %>
-            </div>
+    <div class="group-actions">
+        <% if current_user.in_group?(@group.id) %>
+            <% if @group.admin_id == current_user.id %>
+                <%= button_to 'Delete Group', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+            <% else %>
+                <%= button_to 'Leave Group', leave_group_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class: 'leave-button' %>
+            <% end %>
         <% else %>
-            <div class="request-actions">
-            <%= button_to 'Leave Group', leave_group_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class: 'reject-button' %>
-            </div>
+            <%= button_to 'Join Group', join_group_group_path(@group), method: :post, class: 'join-button' %>
         <% end %>
-    <% else %>
-        <div class="request-actions">
-        <%= button_to 'Join Group', join_group_group_path(@group), method: :post, class: 'accept-button' %>
-        </div>
-    <% end %>
+    </div>
 
-    <section class="profile-section">
-            <h3>Posts</h3>
-            <% if @posts.any? %>
+    <section class="posts-section">
+        <h3>Posts</h3>
+        <% if @posts.any? %>
             <ul class="post-list">
                 <% @posts.each do |post| %>
-                <li class="post-item">
-                    <span class="post-title"><%= post.title %></span>
-                    <%= link_to 'View Post', post_path(post), class: "view-post-link" %>
-                </li>
+                    <li class="post-item">
+                        <span class="post-title"><%= post.title %></span>
+                        <%= link_to 'View Post', post_path(post), class: "view-post-link" %>
+                    </li>
                 <% end %>
             </ul>
-            <% else %>
+        <% else %>
             <p class="no-posts">No posts yet.</p>
-            <% end %>
+        <% end %>
     </section>
 </div>

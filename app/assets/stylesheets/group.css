@@ -1,0 +1,208 @@
+/* Container for group details and actions */
+.group-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.group-container h2 {
+  font-size: 26px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.group-details p {
+  font-size: 16px;
+  color: #444;
+  margin: 5px 0;
+}
+
+.group-actions {
+  margin: 20px 0;
+}
+
+.join-button,
+.leave-button,
+.delete-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.join-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.join-button:hover {
+  background-color: #218838;
+}
+
+.leave-button,
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.leave-button:hover,
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Posts Section */
+.posts-section {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.posts-section h3 {
+  font-size: 20px;
+  color: #666;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.post-title {
+  font-size: 18px;
+  color: #333;
+}
+
+.view-post-link {
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.view-post-link:hover {
+  text-decoration: underline;
+}
+
+.no-posts {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.new-group-button-wrapper {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+.new-group-button {
+  display: inline-block;
+  padding: 12px 24px;
+  margin-top: 20px; /* Space above the button */
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  text-decoration: none; /* Ensures it's styled as a button */
+}
+
+.new-group-button:hover {
+  background-color: #218838;
+}
+
+/* Container for the form */
+.group-form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.group-form-container h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Styling for the group-form group */
+.group-form-group {
+  margin-bottom: 15px;
+}
+
+/* Input field styling */
+.group-form-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.group-form-input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Error message styling */
+.group-form-group div {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+/* Submit button styling */
+.group-form-container input[type="submit"] {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.group-form-container input[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* Label styling */
+.group-form-container label {
+  display: block;              /* Makes the label take up its own line */
+  font-size: 14px;             /* Sets the font size */
+  font-weight: bold;           /* Makes the label text bold */
+  color: #333;                 /* Sets the color of the label text */
+  margin-bottom: 8px;          /* Adds space below the label */
+  text-align: center;            /* Aligns the text to the left */
+}
+
+.group-form-container input:focus + label {
+  color: #007BFF;              /* Changes label color when input is focused */
+}
