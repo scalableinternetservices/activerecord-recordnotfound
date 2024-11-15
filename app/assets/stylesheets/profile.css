@@ -1,0 +1,161 @@
+/* General styling for profile page */
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.profile-section h3 {
+  font-size: 20px;
+  color: #666;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.post-list {
+  list-style: none;
+  padding: 0;
+}
+
+.post-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.post-title {
+  font-size: 18px;
+  color: #333;
+}
+
+.view-post-link {
+  font-size: 14px;
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.view-post-link:hover {
+  text-decoration: underline;
+}
+
+.no-posts {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Friend Requests Section */
+.friend-requests-section,
+.friends-section {
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  margin: 20px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.friend-requests-list,
+.friends-list {
+  list-style: none;
+  padding: 0;
+}
+
+.friend-request-item,
+.friend-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.friend-request-item:last-child,
+.friend-item:last-child {
+  border-bottom: none;
+}
+
+.request-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.accept-button,
+.reject-button,
+.unfriend-button,
+.friend-request-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.accept-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.accept-button:hover {
+  background-color: #218838;
+}
+
+.reject-button,
+.unfriend-button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.reject-button:hover,
+.unfriend-button:hover {
+  background-color: #c82333;
+}
+
+.friend-request-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.friend-request-button:hover {
+  background-color: #0056b3;
+}
+
+.friend-link {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.friend-link:hover {
+  text-decoration: underline;
+}
+
+.friend-actions,
+.friend-request-section {
+  margin: 20px 0;
+  text-align: center;
+}
+
+/* Status messages */
+.friend-request-section p {
+  color: #666;
+  font-style: italic;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  margin: 10px 0;
+}

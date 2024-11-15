@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_09_192605) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_14_222248) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_192605) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "friend_ids", default: [], array: true
+    t.integer "pending_friend_request_ids", default: [], array: true
+    t.integer "sent_friend_request_ids", default: [], array: true
+    t.integer "group_ids", default: [], array: true
   end
 
   add_foreign_key "comments", "posts"

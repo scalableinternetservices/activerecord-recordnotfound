@@ -1,0 +1,18 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <a href="/" class="navbar-logo">
+      <img src="<%= asset_path 'penguin.jpg' %>" alt="Penguin Logo" class="penguin-logo" />
+    </a>
+    <span class="navbar-title">ActiveRecord::RecordNotFound</span>
+  </div>
+  
+  <div class="navbar-right">
+    <ul class="navbar-links">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "Groups", groups_path%></li>
+      <li><%= link_to "People", users_path %></li>
+      <li><%= link_to "Profile", user_path(current_user) %></li>
+      <li><%= link_to "Log Out", logout_path, method: :delete %></li>
+    </ul>
+  </div>
+</nav>

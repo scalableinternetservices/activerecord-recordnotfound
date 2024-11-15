@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+*= require_auth
+*= require_error
+*= require_navbar
+*= require_profile
+*= require_home
+*= require_people
+*= require_group
