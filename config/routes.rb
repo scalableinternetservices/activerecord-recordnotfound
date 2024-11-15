@@ -15,6 +15,11 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :groups do
+    post 'join_group', on: :member  # Use member route for join_group
+    post 'leave_group', on: :member
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

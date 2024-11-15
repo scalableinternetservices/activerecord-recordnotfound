@@ -1,0 +1,12 @@
+<%= form_with model: group do |form| %>
+  <div class="form-group">
+    <%= form.text_area :group_name, class: "form-input" %><br>
+    <% group.errors.full_messages_for(:group_name).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

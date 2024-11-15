@@ -12,6 +12,7 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: true, on: :create
 
   after_initialize :init_friend_arrays, if: :new_record?
+  after_initialize :init_group_arrays, if: :new_record?
 
   def friends
     User.where(id: friend_ids)
@@ -103,11 +104,30 @@ class User < ApplicationRecord
     false
   end
 
+  def join_group(group_id)
+    self.group_ids << group_id unless group_ids.include?(group_id)
+    save
+  end
+
+  def leave_group(group_id)
+    self.group_ids.delete(group_id)
+    save
+  end
+
+  def in_group?(group_id)
+    return true if group_ids&.include?(group_id)
+    false
+  end
+
   private
 
   def init_friend_arrays
     self.friend_ids ||= []
     self.pending_friend_request_ids ||= []
     self.sent_friend_request_ids ||= []
+  end
+
+  def init_group_arrays
+    self.group_ids ||= []
   end
 end

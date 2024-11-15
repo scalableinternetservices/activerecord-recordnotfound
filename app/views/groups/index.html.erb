@@ -1,0 +1,72 @@
+
+<div class=people-container>
+    <h2>Search for Groups</h2>
+    <div class="search-section">
+        <%= form_with url: groups_path, method: :get, local: true, class: "search-form" do |f| %>
+        <%= f.text_field :search, 
+            placeholder: "Search by group...", 
+            value: params[:search],
+            class: "search-input" %>
+        <%= f.submit "Search", class: "search-button" %>
+        <% end %>
+    </div> 
+</div>
+
+<div class="people-container">
+  <h2>Your Groups</h2>
+
+  <div class="users-list">
+    <% if @groups.any? %>
+        <% @groups.each do |group| %>
+
+            <% if @current_user.in_group?(group.id) %>
+                <div class="user-card">
+                <%= link_to group_path(group), class: "user-link-wrapper" do %>
+                    <div class="user-info">
+                        <%= group.group_name %>
+                    </div>
+                    <% end %>
+
+                    <div class="user-info">
+                        # Members: <%= group.count_users_in_group(group.id) %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+
+    <% else %>
+      <p class="no-results">No groups found.</p>
+    <% end %>
+    
+    <%= link_to 'Create New Group', new_group_path, class: 'search-button' %>
+
+  </div>
+</div> 
+
+<div class="people-container">
+  <h2>Explore Groups</h2>
+
+  <div class="users-list">
+    <% if @groups.any? %>
+        <% @groups.each do |group| %>
+
+            <% if !@current_user.in_group?(group.id) %>
+                <div class="user-card">
+                <%= link_to group_path(group), class: "user-link-wrapper" do %>
+                    <div class="user-info">
+                        <%= group.group_name %>
+                    </div>
+                    <% end %>
+
+                    <div class="user-info">
+                        # Members: <%= group.count_users_in_group(group.id) %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+
+    <% else %>
+      <p class="no-results">No groups found.</p>
+    <% end %>
+  </div>
+</div> 
