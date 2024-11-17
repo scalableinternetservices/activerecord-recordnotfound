@@ -1,0 +1,17 @@
+/* Container for group details and actions */
+
+.create-button,
+.edit-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-button,
+.edit_button {
+  background-color: #28a745;
+  color: white;
+}
