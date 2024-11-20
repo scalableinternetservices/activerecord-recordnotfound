@@ -1,0 +1,36 @@
+<div class="group-container">
+    <h2><%= @group.group_name %></h2>
+
+    <div class="group-details">
+        <p><strong><%= @group.count_users_in_group(@group.id) %> Members</strong></p>
+        <p><strong>Admin:</strong> <%= @group.admin.user_name %></p>
+    </div>
+
+    <div class="group-actions">
+        <% if current_user.in_group?(@group.id) %>
+            <% if @group.admin_id == current_user.id %>
+                <%= button_to 'Delete Group', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+            <% else %>
+                <%= button_to 'Leave Group', leave_group_group_path(@group), method: :post, data: { confirm: 'Are you sure?' }, class: 'leave-button' %>
+            <% end %>
+        <% else %>
+            <%= button_to 'Join Group', join_group_group_path(@group), method: :post, class: 'join-button' %>
+        <% end %>
+    </div>
+
+    <section class="posts-section">
+        <h3>Posts</h3>
+        <% if @posts.any? %>
+            <ul class="post-list">
+                <% @posts.each do |post| %>
+                    <li class="post-item">
+                        <span class="post-title"><%= post.title %></span>
+                        <%= link_to 'View Post', post_path(post), class: "view-post-link" %>
+                    </li>
+                <% end %>
+            </ul>
+        <% else %>
+            <p class="no-posts">No posts yet.</p>
+        <% end %>
+    </section>
+</div>

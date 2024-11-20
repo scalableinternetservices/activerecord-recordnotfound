@@ -1,0 +1,23 @@
+/* Home Page Styles */
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 60px); /* Adjust for the height of the navbar */
+  background-color: #ecf0f1;
+  padding: 20px;
+  text-align: center;
+}
+
+.penguin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.large-penguin {
+  max-width: 80%; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px; /* Optional: rounded corners for a soft look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow */
+}

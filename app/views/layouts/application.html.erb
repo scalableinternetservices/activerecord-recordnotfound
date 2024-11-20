@@ -11,6 +11,7 @@
   </head>
 
   <body>
+    <%= render 'layouts/navbar' if logged_in? %>
     <%= yield %>
   </body>
 </html>
