@@ -1,0 +1,12 @@
+<h2>Posts in <%= @group.group_name %></h2>
+<%= link_to 'New Post', new_group_post_path(@group), class: "new-post-link" %>
+
+<ul class="post-list">
+  <% @posts.each do |post| %>
+    <li>
+      <strong><%= link_to post.post_name, group_post_path(@group, post) %></strong>
+      <p>By <%= post.user.user_name %> at <%= post.created_at.strftime("%B %d, %Y %H:%M") %></p>
+    </li>
+  <% end %>
+</ul>
+

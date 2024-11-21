@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   resources :groups do
     post 'join_group', on: :member
     post 'leave_group', on: :member
+    resources :posts, only: %i[new create index show edit update destroy]
   end
+
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

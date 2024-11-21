@@ -1,0 +1,9 @@
+<h2><%= @post.post_name %></h2>
+<p><%= @post.body %></p>
+<p>Posted by: <%= @post.user.user_name %> on <%= @post.created_at.strftime("%B %d, %Y %H:%M") %></p>
+
+<% if @post.user == current_user %>
+  <%= button_to 'Edit Post', edit_group_post_path(@group, @post), method: :get, class: 'edit-button' %>
+  <%= button_to 'Delete Post', group_post_path(@group, @post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
+<% end %>
+
