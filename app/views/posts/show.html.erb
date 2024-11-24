@@ -7,3 +7,23 @@
   <%= button_to 'Delete Post', group_post_path(@group, @post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
 <% end %>
 
+<h3>Comments</h3>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong><%= comment.user.user_name %>:</strong> <%= comment.body %>
+    <% if comment.user == current_user %>
+      <%= button_to "Delete", group_post_comment_path(@group, @post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-button" %>
+    <% end %>
+  </p>
+<% end %>
+
+
+<h3>Add a Comment</h3>
+<%= form_with model: [@group, @post, @post.comments.build], local: true do |form| %>
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, rows: 3, class: "form-control" %>
+  </div>
+  <%= form.submit "Post Comment", class: "submit-button" %>
+<% end %>
+

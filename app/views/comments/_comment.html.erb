@@ -1,0 +1,8 @@
+<div class="comment">
+  <p><strong><%= comment.user.user_name %>:</strong> <%= comment.body %></p>
+  <p><small><%= comment.created_at.strftime("%B %d, %Y %H:%M") %></small></p>
+  <% if comment.user == current_user %>
+    <%= button_to "Delete", group_post_comment_path(comment.post.group, comment.post, comment), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</div>
+
