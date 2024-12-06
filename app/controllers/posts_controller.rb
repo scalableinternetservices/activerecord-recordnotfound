@@ -33,6 +33,7 @@ class PostsController < ApplicationController
   end
 
   def create
+    Rails.logger.info "Create Action Params: #{params.inspect}"
     @group = Group.find(params[:group_id])
     @post = @group.posts.build(post_params)
     @post.user = current_user
@@ -40,6 +41,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to group_post_path(@group, @post), notice: "Post created successfully!"
     else
+      Rails.logger.error "Post Save Failed: #{@post.errors.full_messages}"
       render :new, status: :unprocessable_entity
     end
   end
