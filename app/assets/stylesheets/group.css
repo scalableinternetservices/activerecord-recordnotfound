@@ -206,3 +206,22 @@
 .group-form-container input:focus + label {
   color: #007BFF;              /* Changes label color when input is focused */
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.pagination .page:hover {
+  background-color: #f0f0f0;
+}
