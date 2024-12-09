@@ -20,13 +20,8 @@
 
     <section class="posts-section">
         <h3>Posts</h3>
-        <% if current_user.in_group?(@group.id) %>
-            <div class="new-post-button">
-                <%= link_to 'Create New Post', new_group_post_path(@group), class: "create-button" %>
-            </div>
-        <% else %>
+
             <p>You need to join this group to create posts.</p>
-        <% end %>
 
         <% if @posts.any? %>
             <ul class="post-list">
@@ -37,16 +32,8 @@
                     </li>
                 <% end %>
             </ul>
-            <div class="pagination">
-                <% if @current_page > 1 %>
-                    <%= link_to 'Previous', group_path(@group, page: @current_page - 1), class: 'page' %>
-                <% end %>
-                <% if @current_page < @total_pages %>
-                    <%= link_to 'Next', group_path(@group, page: @current_page + 1), class: 'page' %>
-                <% end %>
-            </div>
+
         <% else %>
             <p class="no-posts">No posts yet.</p>
         <% end %>
     </section>
-</div>
