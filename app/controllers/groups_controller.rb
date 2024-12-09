@@ -11,12 +11,11 @@ class GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @posts = @group.posts
-    # @posts_per_page = 5
-    # @current_page = params[:page].to_i > 0 ? params[:page].to_i : 1
-    # @total_posts = @group.posts.count
-    # @total_pages = (@total_posts / @posts_per_page.to_f).ceil
-    # @posts = @group.posts.order(created_at: :desc).offset((@current_page - 1) * @posts_per_page).limit(@posts_per_page)
+    @posts_per_page = 5
+    @current_page = params[:page].to_i > 0 ? params[:page].to_i : 1
+    @total_posts = @group.posts.count
+    @total_pages = (@total_posts / @posts_per_page.to_f).ceil
+    @posts = @group.posts.order(created_at: :desc).offset((@current_page - 1) * @posts_per_page).limit(@posts_per_page)
   end
 
   def new

@@ -37,8 +37,17 @@
                     </li>
                 <% end %>
             </ul>
+            <div class="pagination">
+                <% if @current_page > 1 %>
+                    <%= link_to 'Previous', group_path(@group, page: @current_page - 1), class: 'page' %>
+                <% end %>
+                <% if @current_page < @total_pages %>
+                    <%= link_to 'Next', group_path(@group, page: @current_page + 1), class: 'page' %>
+                <% end %>
+            </div>
 
         <% else %>
             <p class="no-posts">No posts yet.</p>
         <% end %>
     </section>
+</div>
