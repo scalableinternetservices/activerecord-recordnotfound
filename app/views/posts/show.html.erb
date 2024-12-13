@@ -18,7 +18,7 @@
 <% end %>
 
 <h3>Add a Comment</h3>
-<% if current_user.in_group?(@group.id) %>
+<% if current_user.in_group?(@group) %>
   <%= form_with model: [@group, @post, @post.comments.build], local: true do |form| %>
     <div class="form-group">
       <%= form.label :body %>

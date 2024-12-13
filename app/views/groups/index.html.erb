@@ -19,7 +19,7 @@
     <% if @groups.any? %>
         <% @groups.each do |group| %>
 
-            <% if @current_user.in_group?(group.id) %>
+            <% if @current_user.in_group?(group) %>
                 <div class="user-card">
                 <%= link_to group_path(group), class: "user-link-wrapper" do %>
                     <div class="user-info">
@@ -50,7 +50,7 @@
     <% if @groups.any? %>
         <% @groups.each do |group| %>
 
-            <% if !@current_user.in_group?(group.id) %>
+            <% if !@current_user.in_group?(group) %>
                 <div class="user-card">
                 <%= link_to group_path(group), class: "user-link-wrapper" do %>
                     <div class="user-info">

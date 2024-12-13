@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
     @group.admin_id = @current_user.id
 
     if @group.save
-      current_user.join_group(@group.id)
+      current_user.join_group(@group)
       redirect_to @group
     else
       render(:new, status: :unprocessable_entity)
@@ -51,11 +51,6 @@ class GroupsController < ApplicationController
   def destroy
     @group = Group.find(params[:id])
 
-    User.where('group_ids @> ?', "{#{@group.id}}").find_each do |user|
-      user.group_ids.delete(@group.id)
-      user.save
-    end
-
     @group.destroy()
 
     redirect_to(groups_path, status: :see_other)
@@ -66,7 +61,7 @@ class GroupsController < ApplicationController
 
     @group = Group.find(params[:id])
 
-    if current_user.join_group(@group.id)
+    if current_user.join_group(@group)
       redirect_to @group, notice: "You have successfully joined the group!"
     else
       redirect_to @group, alert: "There was an error joining the group."
@@ -77,7 +72,7 @@ class GroupsController < ApplicationController
 
     @group = Group.find(params[:id])
 
-    if current_user.leave_group(@group.id)
+    if current_user.leave_group(@group)
       redirect_to @group, notice: "You have successfully left the group!"
     else
       redirect_to @group, alert: "There was an error leaving the group."

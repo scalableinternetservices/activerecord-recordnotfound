@@ -7,7 +7,7 @@
     </div>
 
     <div class="group-actions">
-        <% if current_user.in_group?(@group.id) %>
+        <% if current_user.in_group?(@group) %>
             <% if @group.admin_id == current_user.id %>
                 <%= button_to 'Delete Group', group_path(@group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
             <% else %>
@@ -20,34 +20,33 @@
 
     <section class="posts-section">
         <h3>Posts</h3>
-        <% if current_user.in_group?(@group.id) %>
+        <% if current_user.in_group?(@group) %>
             <div class="new-post-button">
                 <%= link_to 'Create New Post', new_group_post_path(@group), class: "create-button" %>
             </div>
-        <% else %>
-            <p>You need to join this group to create posts.</p>
-        <% end %>
+            <% if @posts.any? %>
+                <ul class="post-list">
+                    <% @posts.each do |post| %>
+                        <li class="post-item">
+                            <%= link_to post.post_name.presence || "Untitled Post", group_post_path(post.group, post), class: "post-link" %>
+                            <span class="post-author">by <%= post.user.user_name %></span>
+                        </li>
+                    <% end %>
+                </ul>
+                <div class="pagination">
+                    <% if @current_page > 1 %>
+                        <%= link_to 'Previous', group_path(@group, page: @current_page - 1), class: 'page' %>
+                    <% end %>
+                    <% if @current_page < @total_pages %>
+                        <%= link_to 'Next', group_path(@group, page: @current_page + 1), class: 'page' %>
+                    <% end %>
+                </div>
 
-        <% if @posts.any? %>
-            <ul class="post-list">
-                <% @posts.each do |post| %>
-                    <li class="post-item">
-                        <%= link_to post.post_name.presence || "Untitled Post", group_post_path(post.group, post), class: "post-link" %>
-                        <span class="post-author">by <%= post.user.user_name %></span>
-                    </li>
-                <% end %>
-            </ul>
-            <div class="pagination">
-                <% if @current_page > 1 %>
-                    <%= link_to 'Previous', group_path(@group, page: @current_page - 1), class: 'page' %>
-                <% end %>
-                <% if @current_page < @total_pages %>
-                    <%= link_to 'Next', group_path(@group, page: @current_page + 1), class: 'page' %>
-                <% end %>
-            </div>
-
+            <% else %>
+                <p class="no-posts">No posts yet.</p>
+            <% end %>
         <% else %>
-            <p class="no-posts">No posts yet.</p>
+            <p class="no-posts">You need to join this group to create posts.</p>
         <% end %>
     </section>
 </div>
