@@ -7,14 +7,19 @@
   <%= button_to 'Delete Post', group_post_path(@group, @post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'delete-button' %>
 <% end %>
 
-<h3>Comments</h3>
-<% @post.comments.each do |comment| %>
-  <p>
-    <strong><%= comment.user.user_name %>:</strong> <%= comment.body %>
-    <% if comment.user == current_user %>
-      <%= button_to "Delete", group_post_comment_path(@group, @post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-button" %>
+
+<% cache(cache_key_for_comments_section) do %>
+  <h3>Comments</h3>
+  <% @post.comments.each do |comment| %>
+    <% cache(cache_key_for_comment(comment)) do %>
+      <p>
+        <strong><%= comment.user.user_name %>:</strong> <%= comment.body %>
+        <% if comment.user == current_user %>
+          <%= button_to "Delete", group_post_comment_path(@group, @post, comment), method: :delete, data: { confirm: "Are you sure?" }, class: "delete-button" %>
+        <% end %>
+      </p>
     <% end %>
-  </p>
+  <% end %>
 <% end %>
 
 <h3>Add a Comment</h3>

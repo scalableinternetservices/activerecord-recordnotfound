@@ -19,6 +19,7 @@
     </div>
 
     <section class="posts-section">
+      <% cache(cache_key_for_post_section) do %>
         <h3>Posts</h3>
         <% if current_user.in_group?(@group.id) %>
             <div class="new-post-button">
@@ -31,10 +32,12 @@
         <% if @posts.any? %>
             <ul class="post-list">
                 <% @posts.each do |post| %>
+                  <% cache(cache_key_for_post(post)) do %>
                     <li class="post-item">
                         <%= link_to post.post_name.presence || "Untitled Post", group_post_path(post.group, post), class: "post-link" %>
                         <span class="post-author">by <%= post.user.user_name %></span>
                     </li>
+                  <% end %>
                 <% end %>
             </ul>
             <div class="pagination">
@@ -49,5 +52,6 @@
         <% else %>
             <p class="no-posts">No posts yet.</p>
         <% end %>
+      <% end %>
     </section>
 </div>
