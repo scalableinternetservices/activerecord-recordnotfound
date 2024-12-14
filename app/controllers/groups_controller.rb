@@ -2,11 +2,37 @@ class GroupsController < ApplicationController
   before_action :require_login
 
   def index
-    if params[:search]
-      @groups = Group.where("group_name ILIKE ?", "%#{params[:search]}%")
-    else
-      @groups = Group.all
+    your_groups = Group.joins(:memberships)
+                   .where(memberships: { user_id: current_user.id })
+                   .where('group_name ILIKE ?', "%#{params[:search]}%")
+                   .order(id: :desc)
+
+    explore_groups = Group.where('group_name ILIKE ?', "%#{params[:search]}%")
+                          .where.not(id: your_groups.select(:id))
+                          .order(id: :desc)
+
+    @pagy_your_groups, @your_groups = pagy_countless(your_groups,
+                                                     items: 4,
+                                                     page_param: :page_your_groups)
+    @pagy_explore_groups, @explore_groups = pagy_countless(explore_groups,
+                                                           items: 4,
+                                                           page_param: :page_explore_groups)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append(
+          "explore_groups",
+          partial: "additional_groups",
+          locals: { explore_groups: @explore_groups, pagy_explore_groups: @pagy_explore_groups }
+        )
+      end
     end
+    # if params[:search]
+    #   @groups = Group.where("group_name ILIKE ?", "%#{params[:search]}%")
+    # else
+    #   @groups = Group.all
+    # end
   end
 
   def show

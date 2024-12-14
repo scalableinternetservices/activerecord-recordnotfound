@@ -1,4 +1,10 @@
-<li>
-    <p><%= group.group_name %></p>
-    <h4> By <%= group.admin.user_name %> </h4>
-</li>
+<div class="user-card">
+    <%= link_to group_path(group), class: "user-link-wrapper" do %>
+        <div class="user-info">
+            <%= group.group_name %>
+        </div>
+    <% end %>
+    <div class="user-info">
+        # Members: <%= group.count_users_in_group(group.id) %>
+    </div>
+</div>
