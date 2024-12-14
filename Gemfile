@@ -30,3 +30,7 @@ group :development do
 end
 
 gem "bcrypt"
+
+gem "pagy", "~> 5.10"
+
+gem "ransack"

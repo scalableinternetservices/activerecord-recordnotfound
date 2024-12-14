@@ -1,0 +1,7 @@
+<%= turbo_stream.append "your-groups" do %>
+  <%= render partial: "group", locals: { @your_groups } %>
+<% end %>
+
+<%= turbo_stream.append "explore-groups" do %>
+  <%= render partial: "group", locals: { @explore_groups } %>
+<% end %>

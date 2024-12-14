@@ -1,72 +1,55 @@
-
 <div class=group-container>
-    <h2>Search for Groups</h2>
-    <div class="search-section">
-        <%= form_with url: groups_path, method: :get, local: true, class: "search-form" do |f| %>
-        <%= f.text_field :search, 
-            placeholder: "Search by group...", 
-            value: params[:search],
-            class: "search-input" %>
-        <%= f.submit "Search", class: "search-button" %>
-        <% end %>
-    </div> 
+  <h2>Search for Groups</h2>
+  <div class="search-section">
+    <%= form_with url: groups_path,
+                  method: :get,
+                  local: false,
+                  class: "search-form",
+                  data: { turbo_frame: 'results' } do |f| %>
+      <%= f.text_field :search, 
+          placeholder: "Search by group...", 
+          value: params[:search],
+          class: "search-input" %>
+      <%= f.submit "Search", class: "search-button" %>
+    <% end %>
+  </div>
 </div>
 
 <div class="group-container">
-  <h2>Your Groups</h2>
+    <h2>Your Groups</h2>
 
-  <div class="users-list">
-    <% if @groups.any? %>
-        <% @groups.each do |group| %>
-
-            <% if @current_user.in_group?(group.id) %>
-                <div class="user-card">
-                <%= link_to group_path(group), class: "user-link-wrapper" do %>
-                    <div class="user-info">
-                        <%= group.group_name %>
-                    </div>
-                    <% end %>
-
-                    <div class="user-info">
-                        # Members: <%= group.count_users_in_group(group.id) %>
-                    </div>
-                </div>
-            <% end %>
+    <div id="your-groups" class="users-list">
+        <% if @your_groups.any? %>
+            <%= render @your_groups %>
+        <% else %>
+            <p class="no-results">No groups found.</p>
         <% end %>
-
-    <% else %>
-      <p class="no-results">No groups found.</p>
-    <% end %>
-  </div>
-  <div class="new-group-button-wrapper">
-    <%= link_to 'Create New Group', new_group_path, class: 'new-group-button' %>
+        <% if @pagy_your_groups.next %>
+            <%= render "load_more_button",
+                        pagy: @pagy_your_groups,
+                        page_params: { page_your_groups: @pagy_your_groups.next,
+                                       page_explore_groups: params[:page_explore_groups] } %>
+        <% end %>
+    </div>
+    <div class="new-group-button-wrapper">
+        <%= link_to 'Create New Group', new_group_path, class: 'new-group-button' %>
+    </div>
 </div>
-</div> 
 
 <div class="group-container">
-  <h2>Explore Groups</h2>
+    <h2>Your Groups</h2>
 
-  <div class="users-list">
-    <% if @groups.any? %>
-        <% @groups.each do |group| %>
-
-            <% if !@current_user.in_group?(group.id) %>
-                <div class="user-card">
-                <%= link_to group_path(group), class: "user-link-wrapper" do %>
-                    <div class="user-info">
-                        <%= group.group_name %>
-                    </div>
-                    <% end %>
-
-                    <div class="user-info">
-                        # Members: <%= group.count_users_in_group(group.id) %>
-                    </div>
-                </div>
-            <% end %>
+    <div id="explore-groups" class="users-list">
+        <% if @explore_groups.any? %>
+            <%= render @explore_groups %>
+        <% else %>
+            <p class="no-results">No groups found.</p>
         <% end %>
-
-    <% else %>
-      <p class="no-results">No groups found.</p>
-    <% end %>
-  </div>
-</div> 
+        <div class="flex justify-center" id="load_more_button">
+            <%= render "load_more_button",
+                    pagy: @pagy_explore_groups,
+                    page_params: { page_your_groups: params[:page_your_groups],
+                                   page_explore_groups: @pagy_explore_groups.next } %>
+        </div>
+    </div>
+</div>

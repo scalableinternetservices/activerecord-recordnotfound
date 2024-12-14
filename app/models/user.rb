@@ -5,6 +5,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  # optimization via join table
+  has_many :memberships, dependent: :destroy
+  has_many :groups, through: :memberships
+
   has_secure_password
 
   validates :user_name, presence: true, uniqueness: { case_sensitive: false }
@@ -104,19 +108,24 @@ class User < ApplicationRecord
     false
   end
 
-  def join_group(group_id)
-    self.group_ids << group_id unless group_ids.include?(group_id)
-    save
+  def join_group(group)
+    unless groups.include?(group)
+      groups << group
+    end
+    # self.group_ids << group_id unless group_ids.include?(group_id)
+    # save
   end
 
-  def leave_group(group_id)
-    self.group_ids.delete(group_id)
-    save
+  def leave_group(group)
+    groups.delete(group)
+    # self.group_ids.delete(group_id)
+    # save
   end
 
-  def in_group?(group_id)
-    return true if group_ids&.include?(group_id)
-    false
+  def in_group?(group)
+    groups.include?(group)
+    # return true if group_ids&.include?(group_id)
+    # false
   end
 
   private
@@ -127,7 +136,7 @@ class User < ApplicationRecord
     self.sent_friend_request_ids ||= []
   end
 
-  def init_group_arrays
-    self.group_ids ||= []
-  end
+  # def init_group_arrays
+  #   self.group_ids ||= []
+  # end
 end
